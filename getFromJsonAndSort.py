@@ -1,11 +1,5 @@
 import json
-class kala():
-    def __init__(self,link,img,title,price,star):
-        self.link = link
-        self.img = img
-        self.title = title
-        self.price = price
-        self.star = star
+from kala import kala
 
 # Load the list of objects from the JSON file
 with open('keyBoard.json', 'r',encoding='utf-8') as f:
