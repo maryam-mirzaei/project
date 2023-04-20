@@ -8,9 +8,7 @@ app.layout = dbc.Container([
     dbc.Row([
         dbc.Col([html.H1('جستجو در دیجی کالا', className='text-center')], width=10, style={"height":"100%",'margin-top':'40px'}),
         dbc.Col([ html.Img(src=app.get_asset_url('arm/arm.jpg'),width='150px',height='150px')], width=2, style={"height": "50%"}),
-
     ],className='text-right',style={'margin-top':'20px'}),
-
     dbc.Row([
         dbc.Col([
             dbc.Select(
@@ -23,7 +21,11 @@ app.layout = dbc.Container([
                 )]),
         dbc.Col([
                 dbc.Label(":مرتب کردن بر اساس"),
-            ],style={"width": "20%"})
+            ],style={"width": "20%"}),
+        dbc.Col([html.H1('                                                ')]),
+        dbc.Col([dbc.Button('جستجو',id="searchbtn",style={'margin-top':'20px'})]),
+        dbc.Col([dbc.Input(id="input", placeholder="....تایپ کنید", type="text",style={'text-align':'right'}), html.Br(),
+        html.P(id="output")]),
     ], className='my-4'),
     html.Div(id='dd-output-container')
 ])
