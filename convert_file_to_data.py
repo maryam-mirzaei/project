@@ -1,4 +1,4 @@
-def change_files_to_json():
+def convert_files_to_json():
     data =[]
     with open('title.txt',mode='r',encoding='utf-8') as f:
         title = f.read().split('\n')
