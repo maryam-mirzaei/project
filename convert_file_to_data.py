@@ -1,5 +1,6 @@
 def convert_files_to_json():
-    data =[]
+    import json
+    datas =[]
     with open('title.txt',mode='r',encoding='utf-8') as f:
         title = f.read().split('\n')
     with open('price.txt',mode='r',encoding='utf-8') as f:
@@ -13,10 +14,10 @@ def convert_files_to_json():
 
     for l,i,t,p,r in zip(link,img,title,price,rate):
         d = {'link':l,'img':i,'title':t,'price':p,'rate':r}
-        print('d: ',str(d))
-        data.append(d)
+        datas.append(d)
 
-    data=str(data)
+
+    data = json.dumps(datas)
 
     with open('keyBoard1.json', mode='w',encoding='utf-8') as f:
         f.write(data)
