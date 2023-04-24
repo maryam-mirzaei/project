@@ -19,7 +19,7 @@ def webscrapping(search_item):
     options.add_experimental_option('excludeSwitches', ['enable-logging'])
     driver = webdriver.Chrome(options=options)
     driver.maximize_window() # For maximizing window
-    driver.implicitly_wait(50)
+    # driver.implicitly_wait(50)
 
     item=str(search_item).replace(' ','%20')
     driver.get(f'https://www.digikala.com/search/?q={item}')
@@ -37,16 +37,13 @@ def webscrapping(search_item):
     while True: 
         product_list = driver.find_element(
             By.XPATH, '//*[@id="ProductListPagesWrapper"]/section/div[2]')
-        time.sleep(3)
+        time.sleep(2)
         products = product_list.find_elements(
             By.CSS_SELECTOR, '.product-list_ProductList__item__LiiNI')
-        print(f"product index:{products[-1].get_attribute('data-product-index')}")
         driver.execute_script('arguments[0].scrollIntoView(true);', products[-1])
-        # time.sleep(4)
         WebDriverWait(driver, 10).until(EC.element_to_be_clickable(products[-1]))
-        print(len(products))
         if int(products[-1].get_attribute('data-product-index'))>= 50 or len(products) == befor_product_len :
-            if (loop_numebr <= 3 and len(products) < item_requsted_cnt):
+            if (loop_numebr <= 2 and len(products) < item_requsted_cnt):
                 loop_numebr += 1
             else:
                 break    
@@ -83,35 +80,40 @@ def webscrapping(search_item):
             title_data = str(title_text)
 
             #rate_data
-            div2=a.find_element(By.CSS_SELECTOR,'.mb-1.d-flex.ai-center.jc-between')
-            if div2 != None:
-                divs3=div2.find_elements(By.CSS_SELECTOR,'.d-flex.ai-center')
-                w=True
-                for div3 in divs3:
-                    if w:
-                        w=False
-                        continue
-                    else:
-                        p=div3.find_element(By.TAG_NAME,'p')
-                        rate_text = p.get_attribute('innerHTML')
-                        rate_data = str(rate_text)
-            else:
-                rate_data = '-1'
+            # div2=a.find_element(By.CSS_SELECTOR,'.mb-1.d-flex.ai-center.jc-between')
+            rate_data = "-1"
+            try:
+                # if div2 != None:
+                #     divs3=div2.find_elements(By.CSS_SELECTOR,'.d-flex.ai-center')
+                #     w=True
+                #     for div3 in divs3:
+                #         if w:
+                #             w=False
+                #             continue
+                #         else:
+                #             p=div3.find_element(By.TAG_NAME,'p')
+                #             rate_text = p.get_attribute('innerHTML')
+                #             rate_data = str(rate_text)
+                rate_data = div.find_element(
+                By.CSS_SELECTOR, 'p.text-body2-strong.color-700').text
+            except:
+                pass
 
             #price_data
-            div4=a.find_element(By.CSS_SELECTOR,'.d-flex.ai-center.jc-end.gap-1.color-700.color-400.text-h5.grow-1')
-            if div4 != None:
-                span=div4.find_element(By.TAG_NAME,'span')
-                price_text = span.get_attribute('innerHTML')
-                price_data = str(price_text)
-            else:
-                price_data = '-1'
-
+            price_data = '-1'
+            try:
+                price_data = div.find_element(
+                    By.CSS_SELECTOR, '.d-flex.ai-center.jc-end.gap-1.color-700.color-400.text-h5.grow-1').text
+                # print(f"price_data:{price_data}")
+            except:
+                pass
             d = {'link':link_data,'img':img_data,'title':title_data,'price':price_data,'rate':rate_data}
+            # print(f"append item: {d['title']}")
             datas.append(d)
-
+    print("json dumping")
     data = json.dumps(datas)
 
     with open('keyBoard1.json', mode='w',encoding='utf-8') as f:
-        f.write(data)     
+        f.write(data)  
+    print("end of webscraping")  
         
