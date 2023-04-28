@@ -72,7 +72,8 @@ def search(n_clicks,input,dropdown):
         print('waitting....')
 
         webscrap.webscrapping(input)
-        time.sleep(30)
+        # thats not required
+        # time.sleep(30)
 
         getFromJsonAndSort.sort(dropdown)
         
@@ -86,6 +87,9 @@ def search(n_clicks,input,dropdown):
         children1=draw_plot(kalas)
 
         return [children,children1]
+    # error is for this line  you dont return anything if n_clicks is not aviable
+    else:
+        return "",""
 #*************************************************
 if __name__=='__main__':
     app.run_server(port='8000')
