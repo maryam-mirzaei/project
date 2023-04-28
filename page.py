@@ -55,7 +55,7 @@ def search(n_clicks,input,dropdown):
         sortable=True
         print('waitting....')
         webscrap.webscrapping(input)
-        time.sleep(30)
+        # time.sleep(30)
         getFromJsonAndSort.sort(dropdown)
         
         with open('keyBoard1.json', 'r',encoding='utf-8') as f:
