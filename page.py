@@ -98,10 +98,6 @@ def search(n_clicks,input,dropdown):
         children1=draw_plot(kalas)
 
         return [children,children1]
-<<<<<<< HEAD
-=======
-    # error is for this line  you dont return anything if n_clicks is not aviable
->>>>>>> 1c3971175479ae9e168586d0a6047ba4ed4700b0
     else:
         return "",""
 #*************************************************

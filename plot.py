@@ -17,15 +17,13 @@ def draw_plot(kalas):
     # defin mode
         mode='lines',
         name='Data',
-    # for show whats show when on point
         hoverinfo='text',
     )
     # for hover show text
     trace.text = title
     # Create the layout
     layout = go.Layout(
-    # for plot area color
-        #template='plotly_dark'
+
     )
 
     # Create the figure object

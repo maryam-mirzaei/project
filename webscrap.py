@@ -1,7 +1,6 @@
 from selenium import webdriver
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-#import requests
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
@@ -58,8 +57,6 @@ def webscrapping(search_item):
 
     # changed dives to get 50 
     for div in divs[:counter]:
-        # replaced with divs[:50]
-        # if counter<=50: 
             a=div.find_element(By.TAG_NAME,'a')
 
             #link_data
@@ -80,20 +77,8 @@ def webscrapping(search_item):
             title_data = str(title_text)
 
             #rate_data
-            # div2=a.find_element(By.CSS_SELECTOR,'.mb-1.d-flex.ai-center.jc-between')
             rate_data = "-1"
             try:
-                # if div2 != None:
-                #     divs3=div2.find_elements(By.CSS_SELECTOR,'.d-flex.ai-center')
-                #     w=True
-                #     for div3 in divs3:
-                #         if w:
-                #             w=False
-                #             continue
-                #         else:
-                #             p=div3.find_element(By.TAG_NAME,'p')
-                #             rate_text = p.get_attribute('innerHTML')
-                #             rate_data = str(rate_text)
                 rate_data = div.find_element(
                 By.CSS_SELECTOR, 'p.text-body2-strong.color-700').text
             except:
@@ -116,4 +101,3 @@ def webscrapping(search_item):
     with open('keyBoard1.json', mode='w',encoding='utf-8') as f:
         f.write(data)  
     print("end of webscraping")  
-        
