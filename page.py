@@ -16,21 +16,32 @@ app.layout = dbc.Container([
         dbc.Col([html.H2('جستجو در دیجی کالا', className='text-center')], width=10, style={"height":"100%",'margin-top':'30px'}),
         dbc.Col([ html.Img(src=app.get_asset_url('arm/arm.jpg'),width='120px',height='120px')], width=2, style={"height": "50%"}),
     ],className='text-right',style={'margin-top':'20px'}),
-        dbc.Row([
-        dbc.Col([html.Img(src=app.get_asset_url('img/mobile.jpg'),width='150px',height='150px')], width=2, style={"height": "20%"}),
-        dbc.Col([html.Img(src=app.get_asset_url('img/digital-appliances.jpg'),width='150px',height='150px')], width=2, style={"height": "20%"}),
-        dbc.Col([html.Img(src=app.get_asset_url('img/home.jpg'),width='150px',height='150px')], width=2, style={"height": "20%"}),
-        dbc.Col([html.Img(src=app.get_asset_url('img/mode.jpg'),width='150px',height='150px')], width=2, style={"height": "20%"}),
-        dbc.Col([html.Img(src=app.get_asset_url('img/market.jpg'),width='150px',height='150px')], width=2, style={"height": "20%"}),
-        dbc.Col([html.Img(src=app.get_asset_url('img/tahrir.jpg'),width='150px',height='150px')], width=2, style={"height": "20%"}),
-    ],style={'margin-top':'30px'}),
     dbc.Row([
-        dbc.Col(html.A('موبایل',href="https://www.digikala.com/search/category-mobile-phone/")),
-        dbc.Col(html.A('کالای دیجیتال',href="https://www.digikala.com/main/electronic-devices/")),
-        dbc.Col(html.A('خانه و آشپزخانه',href="https://www.digikala.com/main/home-and-kitchen/")),
-        dbc.Col(html.A('مد و پوشاک',href="https://www.digikala.com/main/apparel/")),
-        dbc.Col(html.A('سوپرمارکت',href="https://www.digikala.com/main/food-beverage/")),
-        dbc.Col(html.A('لوازم التحریر',href="https://www.digikala.com/main/book-and-media/"))]),
+        dbc.Col([   
+        dbc.Card([
+            dbc.Row([html.Img(src=app.get_asset_url('img/mobile.jpg'),width='150px',height='150px')],style={"height": "20%"}),
+            dbc.Row([html.A('موبایل',href="https://www.digikala.com/search/category-mobile-phone/"),])],style={'margin-top':'30px'},className='text-center'),]),
+        dbc.Col([
+        dbc.Card([
+            dbc.Row([html.Img(src=app.get_asset_url('img/digital-appliances.jpg'),width='150px',height='150px')], style={"height": "20%"}),
+            dbc.Row([html.A('کالای دیجیتال',href="https://www.digikala.com/main/electronic-devices/")]),],style={'margin-top':'30px'},className='text-center'),]),
+        dbc.Col([
+        dbc.Card([
+            dbc.Row([html.Img(src=app.get_asset_url('img/home.jpg'),width='150px',height='150px')], style={"height": "20%"}),
+            dbc.Row([html.A('خانه و آشپزخانه',href="https://www.digikala.com/main/home-and-kitchen/")]),],style={'margin-top':'30px'},className='text-center'),]),
+        dbc.Col([
+        dbc.Card([
+            dbc.Row([html.Img(src=app.get_asset_url('img/mode.jpg'),width='150px',height='150px')], style={"height": "20%"}),
+            dbc.Row([html.A('مد و پوشاک',href="https://www.digikala.com/main/apparel/")]),],style={'margin-top':'30px'},className='text-center'),]),
+        dbc.Col([
+        dbc.Card([
+            dbc.Row([html.Img(src=app.get_asset_url('img/market.jpg'),width='150px',height='150px')], style={"height": "20%"}),
+            dbc.Row([html.A('سوپرمارکت',href="https://www.digikala.com/main/food-beverage/")]),],style={'margin-top':'30px'},className='text-center'),]),
+        dbc.Col([
+        dbc.Card([
+            dbc.Row([html.Img(src=app.get_asset_url('img/tahrir.jpg'),width='150px',height='150px')], style={"height": "20%"}),
+            dbc.Row([html.A('لوازم التحریر',href="https://www.digikala.com/main/book-and-media/")]),],style={'margin-top':'30px'},className='text-center'),]),
+    ]),
     dbc.Row([
         dbc.Col([
             dbc.Select(id='dropdown',
@@ -86,6 +97,8 @@ def search(n_clicks,input,dropdown):
         children1=draw_plot(kalas)
 
         return [children,children1]
+    else:
+        return "",""
 #*************************************************
 if __name__=='__main__':
     app.run_server(port='8000')
